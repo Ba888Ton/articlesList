@@ -1,0 +1,37 @@
+[
+  {
+    "title": "Заголовок 1",
+    "link": "http://",
+    "description": "Небольшое описание 1",
+    "likes": 0,
+    "id": "2489697a-c57a-4f85-9ba7-ad353f3ba311"
+  },
+  {
+    "title": "Заголовок 2",
+    "link": "http://",
+    "description": "Небольшое описание 2",
+    "likes": 2,
+    "id": "2489697a-c57a-4f85-9ba7-ad353f3ba312"
+  },
+  {
+    "title": "Заголовок 3",
+    "link": "http://",
+    "description": "Небольшое описание 3",
+    "likes": 1,
+    "id": "2489697a-c57a-4f85-9ba7-ad353f3ba313"
+  },
+  {
+    "title": "Заголовок 4",
+    "link": "http://",
+    "description": "Небольшое описание 4",
+    "likes": 5,
+    "id": "2489697a-c57a-4f85-9ba7-ad353f3ba314"
+  },
+  {
+    "title": "Заголовок 5",
+    "link": "http://",
+    "description": "Небольшое описание 5",
+    "likes": 11,
+    "id": "2489697a-c57a-4f85-9ba7-ad353f3ba315"
+  }
+]

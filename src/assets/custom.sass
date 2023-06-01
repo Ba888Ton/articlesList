@@ -1,0 +1,143 @@
+@mixin button()
+  display: flex
+  justify-content: center
+  border-radius: 0.1875rem
+  padding: 0.75rem 1rem 0.625rem 1rem
+
+.primary-btn
+  @include button
+  background: var(--color-primary)
+  color: var(--color-white)
+  cursor: pointer
+  &:hover
+    background: var(--color-primary-hover)
+  &:active
+    background: var(--color-primary-active)
+  &.disable
+    background: var(--color-primary-disable)
+    cursor: default
+
+  &--text
+    margin-right: 0.5rem
+    font-size: 1rem
+
+.secondary-btn
+  @include button
+  background: var(--color-cancel)
+  color: var(--color-primary-dark)
+  cursor: pointer
+  &:hover
+    background: var(--color-cancel-hover)
+  &:active
+    background: var(--color-cancel-active)
+  &.disable
+    background: var(--color-cancel-disable)
+  &--text
+    margin-right: 0.5rem
+    font-size: 1rem
+
+.title-2
+  font-weight: 500
+  font-size: 1.5rem
+  line-height: 2rem
+  color: var(--color-primary-dark)
+
+.title-3
+  font-weight: 600
+  font-size: 1.25rem
+  line-height: 1.75rem
+  color: var(--color-primary-dark)
+  margin-bottom: 1rem
+
+.secondary-text 
+  font-size: 0.875rem
+  color: var(--color-secondary-text)
+
+.base-input
+  border: 1px solid var(--color-border)
+  color: var(--color-primary-dark)
+  height: 46px
+  border-radius: 0.25rem
+  padding: 0 1rem
+  width: 100%
+
+
+.base-input:placeholder 
+  color: var(--color-placeholder)
+
+select 
+    
+  // A reset of styles, including removing the default dropdown arrow
+  
+  appearance: none
+  background-color: transparent
+  border: none
+  padding: 0 1rem 0 0
+  margin: 0
+  width: 100%
+  font-family: inherit
+  font-size: inherit
+  cursor: inherit
+  line-height: inherit
+  outline: none
+
+  // Stack above custom arrow
+  z-index: 1
+
+.select 
+  display: grid
+  grid-template-areas: "select"
+  align-items: center
+  position: relative
+
+  select,
+  &::after 
+    grid-area: select
+
+  min-width: 30ch
+
+  border: 1px solid transparent
+  border-radius: 5rem
+  padding: 0.5rem
+  cursor: pointer
+
+  // Optional styles
+  // remove for transparency
+  
+  background-color: #fff
+  background-image: linear-gradient(to top, #f9f9f9, #fff 33%)
+
+  // Custom arrow
+  
+  &:not(.select--multiple)::after 
+    content: ""
+    justify-self: end
+    width: 0.8rem
+    height: 0.5rem
+    background-color: var(--select-arrow)
+    clip-path: polygon(100% 0%, 0 0%, 50% 100%)
+
+select:focus + .focus 
+  position: absolute
+  top: -1px
+  left: -1px
+  right: -1px
+  bottom: -1px
+  border: 2px solid var(--select-focus)
+  border-radius: inherit
+
+select[multiple] 
+  padding-right: 0
+  height: 6rem
+
+  option 
+    white-space: normal
+    outline-color: var(--select-focus)
+
+.select--disabled 
+  cursor: not-allowed
+  background-color: #eee
+  background-image: linear-gradient(to top, #ddd, #eee 33%)
+
+
+  

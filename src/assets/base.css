@@ -1,0 +1,87 @@
+/* color palette from <https://github.com/vuejs/theme> */
+:root {
+  --vt-c-white: #ffffff;
+  --vt-c-white-soft: #f9f9f9;
+  --vt-c-white-mute: #f2f2f2;
+
+  --vt-c-black: #181818;
+  --vt-c-black-soft: #222222;
+  --vt-c-black-mute: #282828;
+}
+
+:root {
+  --color-background: var(--vt-c-white);
+  --color-background-soft: var(--vt-c-white-soft);
+  --color-background-mute: var(--vt-c-white-mute);
+  --color-background-fill: #0A0E2028;
+  
+  --color-white: var(--vt-c-white);
+
+  --color-primary: #ED5252;
+  --color-primary-hover: #F06C6C;
+  --color-primary-active: #D54A4A;
+  --color-primary-disable: #F0F1F2;
+
+  --color-cancel: #0A0E2012;
+  --color-cancel-hover: #0A0E201A;
+  --color-cancel-active: #0A0E2026;
+  --color-cancel-disable: #C5C7D0;
+
+  --color-placeholder: #A0A6BF;
+  --color-primary-dark: #303446;
+  
+  --color-border: #D9DDE6;
+  --color-border-hover: #BFC3D5;
+  --color-border-focus: var(--color-border-hover);
+  --color-border-error: var(--color-primary);
+
+  --color-secondary-text: #6A6E7E;
+
+  --select-border: #777;
+  --select-focus: blue;
+  --select-arrow: var(--select-border);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  position: relative;
+  font-weight: normal;
+}
+
+body {
+  min-height: 100vh;
+  color: var(--color-text);
+  background: var(--color-background);
+  transition: color 0.5s, background-color 0.5s;
+  line-height: 1.5;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 16px;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html, div, span, input, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, button, pre, a, cite, code, em, img, strong, tt, var, b, u, dl, dt, dd, ol, ul, li, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, footer, header, menu, nav, section {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font-size: 16px;
+  font: inherit;
+  font-family: 'Montserrat', sans-serif;
+  background: inherit;
+}
+
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+    outline: none;
+}
+
+ul,li {
+  list-style: none;
+}

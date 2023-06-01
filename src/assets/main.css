@@ -1,0 +1,35 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&display=swap');
+@import "./base.css";
+
+body {
+  display: flex;
+} 
+
+#app {
+  display: flex;
+  flex: 1;
+  place-items: center;
+  font-weight: normal;
+  margin: 0 auto;
+  padding: 2rem;
+  max-width: 86rem;
+  position: static;
+}
+
+@media (hover: hover) {
+  a:hover {
+    background-color: hsla(160, 100%, 37%, 0.2);
+  }
+}
+
+.fade-enter-active {
+  transition: opacity .5s;
+}
+.fade-leave-active {
+  transition: opacity 0;
+}
+.fade-enter, .fade-leave-to {
+  opacity: 0;
+}
+
+
