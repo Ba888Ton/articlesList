@@ -1,53 +1,59 @@
 <template>
-  <div class="popup-body">
-    <h3 class="title-3">Удалить категорию</h3>
-    <input
-      type="text"
-      class="base-input popup-body--input"
-      placeholder="Название"
-    />
-    <div class="select">
-      <select name="parent" id="standard-select">
-        <option value="default" disabled hidden>
-          Родительская карточка (необязательно)
-        </option>
-        <option v-for="item in parentOption" :key="item">
-          {{ item }}
-        </option>
-      </select>
-    </div>
-    <div class="select">
-      <select name="articles" id="standard-select">
-        <option value="default" disabled hidden>Вложенные статьи</option>
-        <option v-for="item in articleOption" :key="item">
-          {{ item }}
-        </option>
-      </select>
+  <div class="popup-layout">
+    <div class="popup-body">
+      <IconQuestion />
+      <div class="popup-body--text">
+        <h3 class="title-3">Удалить категорию?</h3>
+        <p>Все дочерние категории удалятся.</p>
+      </div>
+      <div class="popup-action">
+        <button class="primary-btn" @click="confirmRemove">Удалить</button>
+        <button class="secondary-btn" @click="hidePopup">Отмена</button>
+      </div>
     </div>
   </div>
 </template>
 
 <script lang="ts">
 import Vue from "vue";
-import { nanoid } from "nanoid";
+import { mapGetters, mapMutations } from "vuex";
+import IconQuestion from "../icons/IconQuestion.vue";
 
 export default Vue.extend({
   name: "DeleteCategory",
-  data() {
-    return {
-      parentOption: [1, 2],
-      articleOption: [1, 2],
-      model: {
-        article: [1],
-      },
-    };
-  },
+  components: { IconQuestion },
   computed: {
-    setId() {
-      return nanoid();
+    ...mapGetters([
+      "categories",
+      "categoriesLength",
+      "modeId",
+      "allArticles",
+      "allCategories",
+    ]),
+  },
+  methods: {
+    ...mapMutations(["removeCategory", "hidePopup"]),
+    confirmRemove() {
+      this.removeCategory(this.modeId);
+      this.hidePopup();
     },
   },
 });
 </script>
 
-<style scoped lang="sass"></style>
+<style scoped lang="sass">
+.popup-layout
+  flex-basis: 29rem
+  max-height: 17rem
+.popup-body
+  flex: 1
+  justify-content: center
+  align-items: center
+  &--text
+    text-align: center
+    margin-top: 0.75rem
+    margin-bottom: 1rem
+.popup-action
+  border: none
+
+</style>

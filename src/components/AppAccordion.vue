@@ -1,5 +1,6 @@
 <script lang="ts">
 import Vue from "vue";
+import { mapGetters, mapMutations } from "vuex";
 import IconShevron from "./icons/IconShevron.vue";
 import AccordionItemMenu from "./AccordionItemMenu.vue";
 import Card from "./Card.vue";
@@ -24,9 +25,8 @@ export default Vue.extend({
       type: [String, undefined],
       required: true,
     },
-    children: {
-      type: Array,
-      default: () => [],
+    child: {
+      type: Object,
     },
   },
   data() {
@@ -36,6 +36,7 @@ export default Vue.extend({
     };
   },
   methods: {
+    ...mapMutations(["showPopup"]),
     toggleAccordion() {
       this.isOpen = !this.isOpen;
     },
@@ -43,22 +44,25 @@ export default Vue.extend({
       this.isShowMenu = true;
     },
     editList() {
-      this.$store.commit("showPopup", {
+      this.showPopup({
         mode: "EditCategory",
         id: this.id,
       });
     },
     deleteList() {
-      this.$store.commit("showPopup", {
+      this.showPopup({
         mode: "DeleteCategory",
         id: this.id,
       });
     },
   },
+  computed: {
+    ...mapGetters(["getChildrenByID"]),
+  },
 });
 </script>
 <template>
-  <div class="accordion" :ref="id">
+  <div class="accordion">
     <button
       class="accordion--header"
       :aria-expanded="isOpen"
@@ -92,14 +96,14 @@ export default Vue.extend({
         <div class="content">
           <Card v-for="card in cards" :key="card.id" :content="card" />
         </div>
-        <ul class="sub-article" v-if="children.length">
-          <div v-for="item in children" :key="item.id">
+        <ul class="sub-article">
+          <div v-for="item in getChildrenByID(id)" :key="item.id">
             <AppAccordion
               v-bind="{
                 id: item.id,
                 category: item.category,
                 cards: item.cards,
-                children: item.children,
+                child: item.child,
               }"
             />
           </div>
@@ -110,7 +114,7 @@ export default Vue.extend({
 </template>
 <style lang="sass" scoped>
 .accordion
-  margin: 3rem 0
+  margin: 3rem 0 0
   display: flex
   flex-direction: column
   &--header
@@ -131,7 +135,7 @@ export default Vue.extend({
   gap: 1rem 1rem
 .v-enter-active,
 .v-leave-active
-  transition: opacity 0.2s ease
+  transition: opacity 0.3s ease
 .v-enter-from,
 .v-leave-to
   opacity: 0

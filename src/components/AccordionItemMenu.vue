@@ -18,16 +18,18 @@ export default Vue.extend({
   watch: {
     showMenu() {
       this.isShowMenu = true;
-    }
+    },
   },
   methods: {
     toggleMenu() {
       this.isShowMenu = !this.isShowMenu;
     },
     editList() {
+      this.isShowMenu = false;
       this.$emit("edit");
     },
     deleteList() {
+      this.isShowMenu = false;
       this.$emit("delete");
     },
   },

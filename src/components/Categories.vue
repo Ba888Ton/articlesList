@@ -14,7 +14,7 @@ export default Vue.extend({
 </script>
 
 <template>
-  <div class="articles-wrapper">
+  <div>
     <template v-if="categories.length">
       <EmptyArticles />
     </template>
@@ -23,9 +23,3 @@ export default Vue.extend({
     </template>
   </div>
 </template>
-
-<style scoped lang="sass">
-.articles-wrapper
-  display: flex
-  width: 100%
-</style>

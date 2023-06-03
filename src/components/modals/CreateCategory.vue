@@ -47,8 +47,8 @@
           :key="card.id"
         />
       </div>
-      <div class="error" v-if="!$v.category.required">Name is required</div>
-      <div class="error" v-if="!$v.category.minLength">
+      <div class="form-error" v-if="!$v.category.required && $v.category.$dirty">Name is required</div>
+      <div class="form-error" v-if="!$v.category.minLength && $v.category.$dirty">
         Name must have at least {{ $v.category.$params.minLength }} letters.
       </div>
     </div>
@@ -61,7 +61,7 @@
       >
         Сохранить
       </button>
-      <button class="secondary-btn" @click="3">Отмена</button>
+      <button class="secondary-btn" @click="hidePopup">Отмена</button>
     </div>
   </div>
 </template>
@@ -83,7 +83,6 @@ export default Vue.extend({
       parentId: "",
       category: "",
       cards: [],
-      submitStatus: null,
     };
   },
   computed: {
@@ -105,10 +104,11 @@ export default Vue.extend({
     saveChanges() {
       const category = {
         id: nanoid(),
+        parentId: this.parentId || null,
         category: this.category,
         cards: this.cards,
       };
-      this.addCategory({ category, parentId: this.parentId });
+      this.addCategory(category);
       this.hidePopup();
     },
     addArticle(articleId) {
@@ -144,6 +144,8 @@ export default Vue.extend({
   padding: 2rem 2rem 1.5rem
   margin-top: 10rem
 .popup-body
+  display: flex
+  flex-direction: column
   .article-list
     display: flex
     flex-wrap: wrap
@@ -164,4 +166,9 @@ export default Vue.extend({
     flex: 1
     &:first-child
       margin-right: 1.5rem
+.form-error
+  color: var(--color-primary)
+  font-size: 0.75rem
+  margin-top: auto
+  margin-bottom: 1rem
 </style>
