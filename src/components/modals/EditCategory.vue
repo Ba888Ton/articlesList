@@ -77,12 +77,12 @@
   </div>
 </template>
 <script lang="ts">
-import Vue from "vue";
+
 import ButtonRemovableTitle from "../buttons/ButtonRemovableTitle.vue";
 import { mapGetters, mapMutations } from "vuex";
 import { required, minLength } from "vuelidate/dist/validators.min";
 
-export default Vue.extend({
+export default {
   name: "EditCategory",
   components: {
     ButtonRemovableTitle,
@@ -149,7 +149,6 @@ export default Vue.extend({
       this.hidePopup();
     },
     addArticle(articleId) {
-      console.log(articleId);
       const article = this.allArticles.find((card) => card.id === articleId);
       this.cards.push({ ...article });
     },
@@ -166,7 +165,7 @@ export default Vue.extend({
       required,
     },
   },
-});
+};
 </script>
 
 <style scoped lang="sass"></style>

@@ -1,7 +1,7 @@
 <script lang="ts">
 import IconTrashbin from "../icons/IconTrashbin.vue";
-import Vue from "vue";
-export default Vue.extend({
+
+export default {
   components: {
     IconTrashbin,
   },
@@ -16,7 +16,7 @@ export default Vue.extend({
       this.$emit("remove");
     },
   },
-});
+};
 </script>
 <template>
   <div class="title">

@@ -67,13 +67,12 @@
 </template>
 
 <script lang="ts">
-import Vue from "vue";
 import ButtonRemovableTitle from "../buttons/ButtonRemovableTitle.vue";
 import { nanoid } from "nanoid";
 import { mapGetters, mapMutations } from "vuex";
 import { required, minLength } from "vuelidate/dist/validators.min";
 
-export default Vue.extend({
+export default {
   name: "CreateCategory",
   components: {
     ButtonRemovableTitle,
@@ -106,13 +105,12 @@ export default Vue.extend({
         id: nanoid(),
         parentId: this.parentId || null,
         category: this.category,
-        cards: this.cards,
+        cards: this.cards.map(card => card.id),
       };
       this.addCategory(category);
       this.hidePopup();
     },
     addArticle(articleId) {
-      console.log(articleId);
       const article = this.allArticles.find((card) => card.id === articleId);
       this.cards.push({ ...article });
     },
@@ -129,7 +127,7 @@ export default Vue.extend({
       required,
     },
   },
-});
+};
 </script>
 
 <style scoped lang="sass">

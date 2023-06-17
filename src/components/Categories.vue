@@ -1,16 +1,15 @@
 <script lang="ts">
-import Vue from "vue";
+
 import EmptyArticles from "./EmptyArticles.vue";
 import CategoryList from "./CategoryList.vue";
-
-export default Vue.extend({
+export default {
   components: { EmptyArticles, CategoryList },
   data() {
     return {
       categories: [],
     };
   },
-});
+};
 </script>
 
 <template>

@@ -5,13 +5,12 @@
 </template>
 
 <script lang="ts">
-import Vue from "vue";
 import { mapMutations, mapGetters } from "vuex";
 import CreateCategory from "./CreateCategory.vue";
 import EditCategory from "./EditCategory.vue";
 import DeleteCategory from "./DeleteCategory.vue";
 
-export default Vue.extend({
+export default {
   components: {
     CreateCategory,
     DeleteCategory,
@@ -20,7 +19,7 @@ export default Vue.extend({
   computed: {
     ...mapGetters(["popupMode", "isShowPopup"]),
   },
-});
+};
 </script>
 
 <style scoped lang="sass">

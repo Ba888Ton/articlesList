@@ -1,5 +1,5 @@
 import Vue from "vue";
-import Vuex from "vuex";
+import Vuex, { Commit } from "vuex";
 
 Vue.use(Vuex);
 
@@ -16,20 +16,8 @@ const state = {
       parentId: null,
       category: "First category",
       cards: [
-        {
-          id: "76270300-83c0-41b0-8b08-6140e9bcc86d",
-          title: "First card",
-          link: "http://",
-          description: "description 1",
-          likes: 2,
-        },
-        {
-          id: "08c51e65-35d3-422d-94bc-b13593585f72",
-          title: "Second card",
-          link: "http://",
-          description: "description 2",
-          likes: 3,
-        },
+        "2489697a-c57a-4f85-9ba7-ad353f3ba314",
+        "2489697a-c57a-4f85-9ba7-ad353f3ba315",
       ],
     },
     {
@@ -37,20 +25,8 @@ const state = {
       parentId: "1",
       category: "2 category",
       cards: [
-        {
-          id: "76270300-83c0-41b0-8b08-6140e9bcc86d",
-          title: "First card",
-          link: "http://",
-          description: "description 1",
-          likes: 2,
-        },
-        {
-          id: "08c51e65-35d3-422d-94bc-b13593585f72",
-          title: "Second card",
-          link: "http://",
-          description: "description 2",
-          likes: 3,
-        },
+        "76270300-83c0-41b0-8b08-6140e9bcc86d",
+        "08c51e65-35d3-422d-94bc-b13593585f72",
       ],
     },
     {
@@ -127,13 +103,13 @@ const mutations = {
   hidePopup(state: State) {
     state.isPopupShow = false;
   },
-  setFetchData(state: State, payload: Record<string, unknown>[]) {
+  setFetchData(state: State, payload: Article[]) {
     state.fetchArticles = payload;
   },
-  addCategory(state: State, payload: { category: Record<string, unknown> }) {
+  addCategory(state: State, payload: Category) {
     state.categories = [...state.categories, payload];
   },
-  editCategory(state: State, payload: { category: Record<string, unknown> }) {
+  editCategory(state: State, payload: Category) {
     state.categories = [
       ...state.categories.filter((el) => el.id !== payload.id),
       payload,
@@ -144,12 +120,28 @@ const mutations = {
       (category) => category.id !== categoryId
     );
   },
+  editArticle(state: State, payload: Article) {
+    state.fetchArticles = [
+      ...state.fetchArticles.filter((el) => el.id !== payload.id),
+      payload,
+    ];
+  },
+  likeArticle(state: State, payload: Article) {
+    state.fetchArticles = [
+      ...state.fetchArticles.filter((el) => el.id !== payload.id),
+      ...state.fetchArticles.filter((el) => {
+        if (el.id === payload.id) {
+          return { ...el, likes: el.likes + 1 };
+        }
+      }),
+    ];
+  },
 };
 
 const actions = {
-  fetchData(context, payload) {
+  fetchData({ commit }: { commit: Commit }, payload: Category[]) {
     setTimeout(() => {
-      context.commit("setFetchData", payload);
+      commit("setFetchData", payload);
     }, 1000);
   },
 };
@@ -163,8 +155,8 @@ const getters = {
   modeId: (state: State) => state.popupMode.id,
   isShowPopup: (state: State) => state.isPopupShow,
   allArticles: (state: State) => state.fetchArticles,
-  allCategories: ({ categories }) => {
-    return categories.map((category) => ({
+  allCategories: ({ categories }: State) => {
+    return categories.map((category: Category) => ({
       id: category.id,
       parentId: category.parentId,
       category: category.category,
@@ -172,19 +164,33 @@ const getters = {
   },
   articleById: (state: State) => state.fetchArticles,
   getChildrenByID:
-    ({ categories }) =>
-    (id) => {
+    ({ categories }: State) =>
+    (id: string) => {
       return categories.filter((obj) => obj.parentId === id);
     },
-  getParent({ categories }) {
+  getParent({ categories }: State) {
     return categories.filter((obj) => obj.parentId === null);
   },
 };
 
+type Article = {
+  title: string;
+  link: string;
+  description: string;
+  likes: number;
+  id: string;
+};
+
+type Category = {
+  id: string;
+  parentId: string | null;
+  category: string;
+  cards: string[];
+};
 interface State {
   isPopupShow: boolean;
-  fetchArticles: Record<string, any>[];
-  categories: Record<string, any>[];
+  fetchArticles: Article[];
+  categories: Category[];
   popupMode: {
     mode: string;
     id: string | undefined;

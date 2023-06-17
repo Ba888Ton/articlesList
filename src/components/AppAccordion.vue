@@ -1,14 +1,13 @@
 <script lang="ts">
-import Vue from "vue";
 import { mapGetters, mapMutations } from "vuex";
 import IconShevron from "./icons/IconShevron.vue";
 import AccordionItemMenu from "./AccordionItemMenu.vue";
-import Card from "./Card.vue";
+import CardInstance from "./CardInstance.vue";
 
-export default Vue.extend({
+export default {
   name: "AppAccordion",
   components: {
-    Card,
+    CardInstance,
     IconShevron,
     AccordionItemMenu,
   },
@@ -59,7 +58,7 @@ export default Vue.extend({
   computed: {
     ...mapGetters(["getChildrenByID"]),
   },
-});
+};
 </script>
 <template>
   <div class="accordion">
@@ -94,7 +93,7 @@ export default Vue.extend({
     <Transition>
       <li v-show="isOpen" :id="id">
         <div class="content">
-          <Card v-for="card in cards" :key="card.id" :content="card" />
+          <CardInstance v-for="card in cards" :key="card.id" :content="card" />
         </div>
         <ul class="sub-article">
           <div v-for="item in getChildrenByID(id)" :key="item.id">

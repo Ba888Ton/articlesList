@@ -1,8 +1,8 @@
 <script lang="ts">
 import IconAdd from "../icons/IconAdd.vue";
-import Vue from "vue";
 
-export default Vue.extend({
+
+export default {
   data() {
     return {};
   },
@@ -14,7 +14,7 @@ export default Vue.extend({
       });
     },
   },
-});
+};
 </script>
 <template>
   <button @click="createCategory" class="primary-btn">

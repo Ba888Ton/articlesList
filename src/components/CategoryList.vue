@@ -15,17 +15,16 @@
 </template>
 
 <script lang="ts">
-import Vue from "vue";
 import { mapGetters } from "vuex";
 import AppAccordion from "./AppAccordion.vue";
 
-export default Vue.extend({
+export default {
   name: "CategoryList",
   components: { AppAccordion },
   computed: {
     ...mapGetters(["getParent"]),
   },
-});
+};
 </script>
 
 <style scoped lang="sass">

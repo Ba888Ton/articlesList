@@ -15,11 +15,10 @@
 </template>
 
 <script lang="ts">
-import Vue from "vue";
 import { mapGetters, mapMutations } from "vuex";
 import IconQuestion from "../icons/IconQuestion.vue";
 
-export default Vue.extend({
+export default {
   name: "DeleteCategory",
   components: { IconQuestion },
   computed: {
@@ -38,7 +37,7 @@ export default Vue.extend({
       this.hidePopup();
     },
   },
-});
+};
 </script>
 
 <style scoped lang="sass">

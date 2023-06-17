@@ -1,8 +1,8 @@
 <script lang="ts">
-import Vue from "vue";
+
 import IconKebab from "./icons/IconKebab.vue";
 
-export default Vue.extend({
+export default {
   components: { IconKebab },
   props: {
     showMenu: {
@@ -33,7 +33,7 @@ export default Vue.extend({
       this.$emit("delete");
     },
   },
-});
+};
 </script>
 <template>
   <div class="menu-block">

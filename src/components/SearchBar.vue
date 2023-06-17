@@ -1,8 +1,7 @@
 <script lang="ts">
-import Vue from "vue";
 import SearchIcon from "./icons/IconSearch.vue";
 
-export default Vue.extend({
+export default {
   props: ["placeholder"],
   components: { SearchIcon },
   data() {
@@ -15,7 +14,7 @@ export default Vue.extend({
       console.log('console >>> ', this.searchText);
     },
   },
-});
+};
 </script>
 <template>
   <div class="search-bar">
